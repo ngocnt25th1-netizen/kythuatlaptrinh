@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include<string>
+
 
 using namespace std;
 struct person {
@@ -24,6 +26,33 @@ void ViewPersonList(vector<person> p) {
 	}
 }
 
+
+void AddPerson(vector<person>& p) {
+	person a;
+	cout << "+Id: ";
+	cin >> a.id;
+	cout << "+Name: ";
+	cin.ignore();
+	getline(cin, a.name);
+	cout << "+Age: ";
+	cin >> a.age;
+	cout << "+Address: ";
+	cin.ignore();
+	getline(cin, a.address);
+	p.push_back(a);
+	cout << "Add a personsuccessfull" << endl;
+}
+
+
+void RemovePerson(vector<person>& p, int id) {
+	for (auto i = p.begin(); i != p.end(); i++) {
+		if (i->id == id) {
+			p.erase(i);
+		}
+	}
+	cout << "Remove a person successfully" << endl;
+}
+
 int main() {
 	vector<person> list;
 	do {
@@ -31,7 +60,7 @@ int main() {
 		cout << "--- HUMAN RESOURCE -----" << endl;
 		cout << "1. View person list" << endl;
 		cout << "2. Add a person" << endl;
-		cout << "3. Remove a person" << endl;
+		cout << "3. Remove a person by id" << endl;
 		cout << "4. Fing a person by name" << endl;
 		cout << "5. Export to file" << endl;
 		cout << "6. Import from file" << endl;
@@ -47,9 +76,15 @@ int main() {
 			break;
 		}
 		case 2: {
+			AddPerson(list);
 			break;
+			
 		}
 		case 3: {
+			int id;
+			cout << "Input ID to remove:";
+			cin >> id;
+			RemovePerson(list, id);
 			break;
 		}
 		case 4: {
