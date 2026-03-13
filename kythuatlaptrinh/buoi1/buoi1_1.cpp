@@ -29,14 +29,14 @@ void ViewPersonList(vector<person> p) {
 
 void AddPerson(vector<person>& p) {
 	person a;
-	cout << "+Id: ";
+	cout << "+ Id: ";
 	cin >> a.id;
-	cout << "+Name: ";
+	cout << "+ Name: ";
 	cin.ignore();
 	getline(cin, a.name);
-	cout << "+Age: ";
+	cout << "+ Age: ";
 	cin >> a.age;
-	cout << "+Address: ";
+	cout << "+ Address: ";
 	cin.ignore();
 	getline(cin, a.address);
 	p.push_back(a);
@@ -44,14 +44,14 @@ void AddPerson(vector<person>& p) {
 }
 
 
-void RemovePerson(vector<person>& p, int id) {
-	for (auto i = p.begin(); i != p.end(); i++) {
-		if (i->id == id) {
-			p.erase(i);
-		}
-	}
-	cout << "Remove a person successfully" << endl;
-}
+//void RemovePerson(vector<person>& p, int id) {
+//	for (auto i = p.begin(); i != p.end(); i++) {
+//		if (i->id == id) {
+//			p.erase(i);
+//		}
+//	}
+//	cout << "Remove a person successfully" << endl;
+//}
 
 int main() {
 	vector<person> list;
@@ -81,11 +81,11 @@ int main() {
 			
 		}
 		case 3: {
-			int id;
+			/*int id;
 			cout << "Input ID to remove:";
 			cin >> id;
 			RemovePerson(list, id);
-			break;
+			break;*/
 		}
 		case 4: {
 			break;
