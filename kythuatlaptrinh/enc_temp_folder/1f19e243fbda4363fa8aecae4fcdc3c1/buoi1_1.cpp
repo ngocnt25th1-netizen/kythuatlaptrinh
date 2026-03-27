@@ -1,18 +1,17 @@
 #include <iostream>
 #include <vector>
 #include<string>
-#include<>
 
 
 using namespace std;
-struct Person {
+struct person {
 	int id;
 	string name;
 	int age;
 	string address;
 };
 
-void ViewPersonList(vector<Person> p) {
+void ViewPersonList(vector<person> p) {
 	if (p.size() == 0)
 		cout << "An empty list" << endl;
 	else{
@@ -28,8 +27,8 @@ void ViewPersonList(vector<Person> p) {
 }
 
 
-void AddPerson(vector<Person>& p) {
-	Person a;
+void AddPerson(vector<person>& p) {
+	person a;
 	cout << "+ Id: ";
 	cin >> a.id;
 	cout << "+ Name: ";
@@ -53,45 +52,9 @@ void AddPerson(vector<Person>& p) {
 //	}
 //	cout << "Remove a person successfully" << endl;
 //}
-void ReadFromFile(vector<Person>& p, string fileName) {
-	ifstream file(fileName, ios::binary);
-	if (!file) {
-		cout << "Can't open this file" << endl;
-		return;
-	}
-}
-/*
-while (p.size()>0)
-{
-p.pop_back();
-}
-*/
-
-Person i;
-  while (file.peek() != EOF) {
-	file.read(reinterpret_cast<char*>(&i.id), szeof(i.id));
-
-	size_t namelength;
-	file.read(reinterpret_cast<char*>(&namelength), szeof(namelength));
-	i.name.resize(namelength);
-	file.read(&i.name[0], namelength);
-
-	file.read(reinterpret_cast<char*>(&i.age), szeof(i.age));
-
-	size_t addresslength;
-	file.read(reinterpret_cast<char*>(&addresslength), szeof(addresslength));
-	i.name.resize(addresslength);
-	file.read(&i.name[0], addresslength);
-
-	RemovePerson(p, i.id);
-	p.push_back(i);
-
-}
-
-
 
 int main() {
-	vector<Person> list;
+	vector<person> list;
 	do {
 		system("cls");
 		cout << "--- HUMAN RESOURCE -----" << endl;
@@ -118,33 +81,19 @@ int main() {
 			
 		}
 		case 3: {
-			int id;
+			/*int id;
 			cout << "Input ID to remove:";
 			cin >> id;
 			RemovePerson(list, id);
-			break;
+			break;*/
 		}
 		case 4: {
-			string name;
-			cout << "Input Name to find: ";
-			cin.ignore();
-			getline(cin, name);
-			bool res = false;
-			if (res) {
-				cout << "Found person with name " << name << endl;
-			}
-			else
-				cout << "Person isn't existed" << endl;
 			break;
 		}
 		case 5: {
-			ExportToFile(list, "25TH1.dla");
-			cout << "Export successfully" << endl;
 			break;
 		}
 		case 6: {
-			ReadFromFile(list, "25TH1.dla");
-			cout << "Import successfully" << endl;
 			break;
 		}
 		case 0: {

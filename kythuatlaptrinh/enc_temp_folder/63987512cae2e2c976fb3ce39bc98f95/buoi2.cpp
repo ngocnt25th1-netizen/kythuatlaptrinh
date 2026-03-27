@@ -17,7 +17,7 @@ struct Node {
 
 struct LinkedList {
 	Node* head;
-	void Show() {
+	void show() {
 		if (head == NULL) {
 			cout << "Empty list" << endl;
 			return;
@@ -53,7 +53,7 @@ int main()
 		switch (cmd)
 		{
 		case 1: {
-			list.Show();
+			list.show();
 			break;
 		}
 		case 2: {
@@ -90,7 +90,7 @@ int main()
 			return 0;
 		}
 		default:
-			cout << "Your command int't found. Try again..." << endl;
+			cout << "Yuor command int't found. Try again..." << endl;
 			break;
 		}
 		cout << "Press Enter to continue...";
