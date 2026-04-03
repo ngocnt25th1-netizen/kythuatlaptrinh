@@ -12,6 +12,13 @@ struct Book {
 	int id;
 	string name;
 	Author author;
+	friend ostream& operator<<(ostream& os, const Book& b) {
+		os << "Book information: " << endl;
+		os << "\t+ Id: " << b.id << endl;
+		os << "\t+ Name: " << b.name << endl;
+		os << "\t+ Author name: " << b.author.name << endl;
+		return os;
+	}
 };
 
 struct Node {
@@ -21,6 +28,17 @@ struct Node {
  
 struct LinkedList {
 	Node* head;
+	void Show() {
+		if (head == NULL) {
+			cout << "No book available" << endl;
+			return;
+	}
+		Node* item = head;
+		while (item != NULL) {
+			cout << item->data;
+		    item = item->next;
+		}
+	}
 };
 
 
@@ -48,6 +66,7 @@ int main()
 		switch (choice)
 		{
 		case 1: {
+			books.Show();
 			break;
 			}
 		case 2: {
