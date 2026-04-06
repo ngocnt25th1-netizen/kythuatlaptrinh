@@ -1,5 +1,5 @@
 #include <iostream>
-#include<string>
+#include <string>
 using namespace std;
 
 
@@ -91,6 +91,23 @@ struct Node {
 			}
 			return false;
 		}
+
+
+		bool Update(int updateId) {
+			if (head == NULL) {
+				cout << "No book available" << endl;
+				return false;
+			}
+			Node* item = head;
+			while (item != NULL) {
+				if (item->data.id == updateId) {
+					cin >> item->data;
+					return true;
+				}
+				item = item->next;
+			}
+			return false;
+		  }
 		};
 
 
@@ -141,6 +158,14 @@ struct Node {
 					break;
 				}
 				case 4: {
+					int updateId;
+					cout << "Enter book's id to update: ";
+					cin >> updateId;
+					bool res = books.Update(updateId);
+					if (res)
+						cout << "Update book successfully" << endl;
+					else
+						cout << "Invalid book id " << endl;
 					break;
 				}
 				case 5: {
@@ -160,6 +185,10 @@ struct Node {
 					break;
 				}
 				}
-			} while (true);
+				system("pause");
+				cout << "Press any key to continue.....";
 
+
+
+			} while (true);
 		}
