@@ -26,15 +26,12 @@ int main()
 		switch (choice)
 		{
 		case 1: {
-			/*books.Show();*/
+			Accounts.show();
 			break;
 		}
 		case 2: {
-			/*Book b;
-			cin >> b;
-			Node* newNode = new Node;
-			newNode->Create(b);
-			books.AddFirst(newNode);*/
+			Account a;
+			cin >> a
 			break;
 		}
 		case 3: {

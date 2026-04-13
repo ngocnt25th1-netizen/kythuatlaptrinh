@@ -152,7 +152,7 @@ struct LinkedList {
 		out.close();
 	}
 	void Import(string filename) {
-		istream in(filename, ios::binary);
+		ofstream in(filename, ios::binary);
 		if (!in.is_open()) {
 			cout << "Cannot open file" << endl;
 			return;
