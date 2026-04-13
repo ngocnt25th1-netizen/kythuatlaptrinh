@@ -1,20 +1,102 @@
-// buoi7.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+
 
 #include <iostream>
+#include "account.h"
+#include "LinkedList.h"
+
 
 int main()
 {
-    std::cout << "Hello World!\n";
-}
+	LinkedList<Account> books = { NULL };
+	do {
+		system("cls");
+		cout << "------ Account MANAGEMENT -------" << endl;
+		cout << "1. Show all account" << endl;
+		cout << "2. Add a account" << endl;
+		cout << "3. Delete a account" << endl;
+		cout << "4. Update a account" << endl;
+		cout << "5. Find account" << endl;
+		cout << "6. Export to file" << endl;
+		cout << "7. Import from file" << endl;
+		cout << "0. Exit" << endl;
+		cout << "----------------" << endl;
+		cout << "Enter your choice: " << endl;
+		int choice;
+		cin >> choice;
+		switch (choice)
+		{
+		case 1: {
+			/*books.Show();*/
+			break;
+		}
+		case 2: {
+			/*Book b;
+			cin >> b;
+			Node* newNode = new Node;
+			newNode->Create(b);
+			books.AddFirst(newNode);*/
+			break;
+		}
+		case 3: {
+			/*int removeId;
+			cout << "Enter book's id to remove: ";
+			cin >> removeId;
+			bool res = books.Remove(removeId);
+			if (res)
+				cout << "Remove book successfully" << endl;
+			else
+				cout << "Invalid book id" << endl;*/
+			break;
+		}
+		case 4: {
+			/*int updateId;
+			cout << "Enter book's id to update: ";
+			cin >> updateId;
+			bool res = books.Update(updateId);
+			if (res)
+				cout << "Update book successfully" << endl;
+			else
+				cout << "Invalid book id " << endl;*/
+			break;
+		}
+		case 5: {
+			/*string bookName;
+			cout << "Enter book's nameto find: ";
+			cin.ignore();
+			getline(cin, bookName);
+			Book* res = books.Find(bookName);
+			if (res != NULL) {
+				cout << *res;
+			}
+			else {
+				cout << "No book with name: " << bookName << endl;
+			}*/
+			break;
+		}
+		case 6: {
+			/*books.Export("25TH1.dla");
+			cout << "Export successfully" << endl;*/
+			break;
+		}
+		case 7: {
+			/*book.Import("25TH1.dla");
+			cout << "Imported successfully" << endl;*/
+			break;
+		}
+		case 0: {
+			return 0;
+		}
+		default: {
+			cout << "Invalid choice, try again" << endl;
+			break;
+		}
+		}
+			  system("pause");
+			  cout << "Press any key to continue.....";
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+
+		} while (true);
+	}
+};
+

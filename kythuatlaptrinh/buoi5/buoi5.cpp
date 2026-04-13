@@ -125,6 +125,7 @@ struct LinkedList {
 		}
 		return NULL;
 	}
+	
 	void Export(string filename) {
 		ofstream out(filename, ios::binary);
 		if (!out.is_open()) {
@@ -150,10 +151,11 @@ struct LinkedList {
 		}
 		out.close();
 	}
-	void Export(string filename) {
+	void Import(string filename) {
 		istream in(filename, ios::binary);
 		if (!in.is_open()) {
 			cout << "Cannot open file" << endl;
+			return;
 		}
 		while (head != NULL) {
 			Node* temp = head;
@@ -165,14 +167,14 @@ struct LinkedList {
 			in.read(reinterpret_cast<char*>(&b.id), sizeof(b.id));
 
 			size_t namelength;
-			in.read(reinterpret_cast<const char*>(&namelength), sizeof(namelength));
+			in.read(reinterpret_cast<char*>(&namelength), sizeof(namelength));
 			b.name.resize(namelength);
 			in.read(&b.name[0], namelength);
 
-			in.read(reinterpret_cast<const char*>(&b.author.id), sizeof(b.author.id));
+			in.read(reinterpret_cast<char*>(&b.author.id), sizeof(b.author.id));
 
 			size_t authornamelength;
-			in.read(reinterpret_cast<const char*>(&authornamelength), sizeof(authornamelength));
+			in.read(reinterpret_cast<char*>(&authornamelength), sizeof(authornamelength));
 			b.name.resize(authornamelength);
 			in.read(&b.name[0], authornamelength);
 
@@ -263,7 +265,7 @@ struct LinkedList {
 					break;
 				}
 				case 7: {
-					book.Import("25TH1.dla");
+					books.Import("25TH1.dla");
 					cout << "Imported successfully" << endl;
 					break;
 				}
