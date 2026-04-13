@@ -50,65 +50,79 @@ struct Node {
 	}
 };
  
-	struct LinkedList {
-		Node* head;
-		void Show() {
-			if (head == NULL) {
-				cout << "No book available" << endl;
-				return;
-			}
-			Node* item = head;
-			while (item != NULL) {
-				cout << item->data;
-				item = item->next;
-			}
+struct LinkedList {
+	Node* head;
+	void Show() {
+		if (head == NULL) {
+			cout << "No book available" << endl;
+			return;
 		}
-		void AddFirst(Node* p) {
-			p->next = head;
-			head = p;
+		Node* item = head;
+		while (item != NULL) {
+			cout << item->data;
+			item = item->next;
 		}
-		bool Remove(int removeId) {
-			if (head == NULL) {
-				cout << "No book available" << endl;
+	}
+	void AddFirst(Node* p) {
+		p->next = head;
+		head = p;
+	}
+	bool Remove(int removeId) {
+		if (head == NULL) {
+			cout << "No book available" << endl;
+			return true;
+		}
+		Node* item = head;
+		if (item->data.id == removeId) {//xoa dau danh sach 
+			head = item->next;
+			delete item;
+			return true;
+		}
+
+
+		while (item->next != NULL) {
+			if (item->next->data.id == removeId) {
+				Node* temp = item->next;
+				item->next = item->next->next;
+				delete temp;
 				return true;
 			}
-			Node* item = head;
-			if (item->data.id == removeId) {//xoa dau danh sach 
-				head = item->next;
-				delete item;
-				return true;
-			}
+			item = item->next;
+		}
+		return false;
+	}
 
 
-			while (item->next != NULL) {
-				if (item->next->data.id == removeId) {
-					Node* temp = item->next;
-					item->next = item->next->next;
-					delete temp;
-					return true;
-				}
-				item = item->next;
-			}
+	bool Update(int updateId) {
+		if (head == NULL) {
+			cout << "No book available" << endl;
 			return false;
 		}
-
-
-		bool Update(int updateId) {
-			if (head == NULL) {
-				cout << "No book available" << endl;
-				return false;
+		Node* item = head;
+		while (item != NULL) {
+			if (item->data.id == updateId) {
+				cin >> item->data;
+				return true;
 			}
-			Node* item = head;
-			while (item != NULL) {
-				if (item->data.id == updateId) {
-					cin >> item->data;
-					return true;
-				}
-				item = item->next;
-			}
-			return false;
-		  }
-		};
+			item = item->next;
+		}
+		return false;
+	}
+	Book* Find(string bookName) {
+		if (head == NULL) {
+			cout << "No book available" << endl;
+			return NULL;
+		}
+		Node* item = head;
+		while (item != NULL) {
+			if (item->data.name.find(bookName) != std::string::npos) {
+			return &(item->data);
+		}
+		item = item->next;
+	}
+	 return NULL;
+       }
+	};
 
 
 
@@ -169,6 +183,17 @@ struct Node {
 					break;
 				}
 				case 5: {
+					string bookName;
+					cout << "Enter book's nameto find: ";
+					cin.ignore();
+					getline(cin, bookName);
+					Book* res = books.Find(bookName);
+					if (res != NULL) {
+						cout << *res;
+					}
+					else {
+						cout << "No book with name: " << bookName << endl;
+					}
 					break;
 				}
 				case 6: {
