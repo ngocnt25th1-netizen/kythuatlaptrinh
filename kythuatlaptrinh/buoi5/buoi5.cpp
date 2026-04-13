@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+
+
 using namespace std;
 
 
@@ -67,7 +69,6 @@ struct LinkedList {
 	void AddFirst(Node* p) {
 		p->next = head;
 		head = p;
-		
 	}
 	bool Remove(int removeId) {
 		if (head == NULL) {
@@ -118,38 +119,73 @@ struct LinkedList {
 		Node* item = head;
 		while (item != NULL) {
 			if (item->data.name.find(bookName) != std::string::npos) {
-			return &(item->data);
+				return &(item->data);
+			}
+			item = item->next;
 		}
-		item = item->next;
+		return NULL;
 	}
-	 return NULL;
-       }
-   void Export(string filename) {
-	ofstream out(filename, ios::binary);
-	if (!out.is_open()) {
-		cout << "Cannot open file" << endl;
-		return;
+	void Export(string filename) {
+		ofstream out(filename, ios::binary);
+		if (!out.is_open()) {
+			cout << "Cannot open file" << endl;
+			return;
+		}
+		Node* item = head;
+		while (item != NULL) {
+			out.write(reinterpret_cast<const char*>(&item->data.id), sizeof(item->data.id));
+
+
+			size_t namelength = item->data.name.size();
+			out.write(reinterpret_cast<const char*>(&namelength), sizeof(namelength));
+			out.write(item->data.name.c_str(), namelength);
+
+			out.write(reinterpret_cast<const char*>(&item->data.author.id), sizeof(item->data.author.id));
+
+			size_t authornamelength = item->data.author.name.size();
+			out.write(reinterpret_cast<const char*>(&authornamelength), sizeof(authornamelength));
+			out.write(item->data.author.name.c_str(), authornamelength);
+
+			item = item->next;
+		}
+		out.close();
 	}
-	Node* item = head;
-	while (item != NULL) {
-		out.write(reinterpret_cast<const char*>(&item->data.id), sizeof(item->data.id));
+	void Export(string filename) {
+		istream in(filename, ios::binary);
+		if (!in.is_open()) {
+			cout << "Cannot open file" << endl;
+		}
+		while (head != NULL) {
+			Node* temp = head;
+			head = head->next;
+			delete temp;
+		}
+		while (in.peek() != EOF) {
+			Book b;
+			in.read(reinterpret_cast<char*>(&b.id), sizeof(b.id));
 
+			size_t namelength;
+			in.read(reinterpret_cast<const char*>(&namelength), sizeof(namelength));
+			b.name.resize(namelength);
+			in.read(&b.name[0], namelength);
 
-		size_t namelength = item->data.name.size();
-		out.write(reinterpret_cast<const char*>(&namelength), sizeof(namelength));
-		out.write(item->data.name.c_str(), namelength);
+			in.read(reinterpret_cast<const char*>(&b.author.id), sizeof(b.author.id));
 
-		out.write(reinterpret_cast<const char*>(&item->data.author.id), sizeof(item->data.author.id));
+			size_t authornamelength;
+			in.read(reinterpret_cast<const char*>(&authornamelength), sizeof(authornamelength));
+			b.name.resize(authornamelength);
+			in.read(&b.name[0], authornamelength);
 
-		size_t authornamelength = item->data.author.name.size();
-		out.write(reinterpret_cast<const char*>(&authornamelength), sizeof(authornamelength));
-		out.write(item->data.author.name.c_str(), authornamelength);
-
-		item = item->next;
+			Node* newNode = new Node;
+			newNode->Create(b);
+			AddFirst(newNode);
+			AddFirst(newNode);
+		}
+		in.close();
 	}
-	out.close();
-   }
 };
+
+
 
 
 
@@ -227,6 +263,8 @@ struct LinkedList {
 					break;
 				}
 				case 7: {
+					book.Import("25TH1.dla");
+					cout << "Imported successfully" << endl;
 					break;
 				}
 				case 0: {
