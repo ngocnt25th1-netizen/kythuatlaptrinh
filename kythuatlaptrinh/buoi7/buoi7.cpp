@@ -7,7 +7,7 @@
 
 int main()
 {
-	LinkedList<Account> books = { NULL };
+	LinkedList<Account> account = { NULL };
 	do {
 		system("cls");
 		cout << "------ Account MANAGEMENT -------" << endl;
@@ -26,48 +26,40 @@ int main()
 		switch (choice)
 		{
 		case 1: {
-			Accounts.show();
+			account.Show();
 			break;
 		}
 		case 2: {
 			Account a;
-			cin >> a
+			cin >> a;
+			account.Add(a);
 			break;
 		}
 		case 3: {
-			/*int removeId;
-			cout << "Enter book's id to remove: ";
+			int removeId;
+			cout << "Enter account Id to remove: ";
 			cin >> removeId;
-			bool res = books.Remove(removeId);
+			bool res = account.Remove(removeId);
 			if (res)
-				cout << "Remove book successfully" << endl;
+				cout << "Removed account with id: " << removeId << endl;
 			else
-				cout << "Invalid book id" << endl;*/
+				cout << "Not found accound id: " << removeId << endl;
 			break;
 		}
 		case 4: {
-			/*int updateId;
-			cout << "Enter book's id to update: ";
+			int updateId;
+			cout << "Enter account Id to update: ";
 			cin >> updateId;
-			bool res = books.Update(updateId);
+			bool res = account.Update(updateId);
 			if (res)
-				cout << "Update book successfully" << endl;
+				cout << "Update account with id: " << updateId << endl;
 			else
-				cout << "Invalid book id " << endl;*/
+				cout << "Not found accound id: " << updateId << endl;
+			
 			break;
 		}
 		case 5: {
-			/*string bookName;
-			cout << "Enter book's nameto find: ";
-			cin.ignore();
-			getline(cin, bookName);
-			Book* res = books.Find(bookName);
-			if (res != NULL) {
-				cout << *res;
-			}
-			else {
-				cout << "No book with name: " << bookName << endl;
-			}*/
+			
 			break;
 		}
 		case 6: {
@@ -95,5 +87,5 @@ int main()
 
 		} while (true);
 	}
-};
+
 
