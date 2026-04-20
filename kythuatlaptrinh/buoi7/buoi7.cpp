@@ -67,13 +67,13 @@ int main()
 			break;
 		}
 		case 6: {
-			/*books.Export("25TH1.dla");
-			cout << "Export successfully" << endl;*/
+			account.Export("25TH1.dla: ");
+			cout << "Exported successfully" << endl;
 			break;
 		}
 		case 7: {
-			/*book.Import("25TH1.dla");
-			cout << "Imported successfully" << endl;*/
+			account.Import("25TH1.dla: ");
+			cout << "Imported successfully" << endl;
 			break;
 		}
 		case 0: {

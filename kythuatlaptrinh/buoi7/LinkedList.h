@@ -1,4 +1,4 @@
-
+#include <fstream>
 template <typename T>
 struct Node {
 	T data;
@@ -11,18 +11,83 @@ struct LinkedList {
 	void Add(T item);
 	bool Remove(int id);
 	bool Update(int id);
+	void Find(string userName);
+	void Export(string fileName);
+	void Import(string fileName);
 };
+
+template <typename T>
+void LinkedList<T>::Export(string fileName) {
+	ofstream outFile(fileName, ios::binary);
+	if (!outFile) {
+		cout << "Error opening file for writing" << endl;
+		return;
+	}
+	Node<T>* item = head;
+	while (item != NULL) {
+		outFile.write(reinterpre_cast<char*>(&item->data), sizeof(T));
+		item = item->next;
+	}
+	outFile.close();
+}
+
+template <typename T>
+void LinkedList<T>::Import(string fileName) {
+	ofstream inFile(fileName, ios::binary);
+	if (!outFile) {
+		cout << "Error opening file for writing" << endl;
+		return;
+	}
+	Node<T>* item = head;
+	while (item != NULL) {
+		outFile.write(reinterpre_cast<char*>(&item->data), sizeof(T));
+		item = item->next;
+		delete temp;
+	}
+	T item;
+	while (inFile.read(reinterpret_cast<char*>(&item), sizeof(T))) {
+		Add(item);
+	}
+	outFile.close();
+}
+
+
+
+
+
+
+
+
+template <typename T>
+void LinkedList<T>::Find(string userName) {
+	if (!head) {
+		cout << "No account available" << endl;
+		return;
+	}
+	Node<T>* item = head;
+	while (item != NULL) {
+		if (item->data.userName == userName) {
+			cout << item->data << endl;
+			return;
+		}
+		item = item->next;
+	}
+	cout << "No account found" << endl;
+
+}
+
+
+
 
 template<typename T>
 void LinkedList<T>::Show() {
-	Node<T>* head;
 	if (head == NULL) {
 		cout << "No account available" << endl;
 		return;
 	}
 	Node<T>* item = head;
 	while (item != NULL) {
-		//cout << item->data;
+		cout << item->data << endl;
 		item = item->next;
 	}
 }
@@ -45,10 +110,11 @@ void LinkedList<T>::Add(T item) {
 }
 
 
-template<typename T>
+template <typename T>
 bool LinkedList<T>::Remove(int id) {
 	if (!head) {
 		cout << "No account available" << endl;
+		return false;
 	}
 	Node<T>* item = head;
 	if (item->data.id == id) {
@@ -68,7 +134,7 @@ bool LinkedList<T>::Remove(int id) {
 	return false;
 }
 
-template<typename T>
+template <typename T>
 bool LinkedList<T>::Update(int id) {
 	if (!head) {
 		cout << "No account available" << endl;
@@ -91,3 +157,4 @@ bool LinkedList<T>::Update(int id) {
 	}
 	return false;
 }
+

@@ -2,10 +2,11 @@
 using namespace std;
 
 struct Account {
-	string id, lnk, usr, pwd, desc;
+	int id;
+	string lnk[50], usr[50], pwd[50], desc[50];
 	friend ostream& operator<<(ostream& os, const Account& b) {
 		os << "Account information: " << endl;
-		os << "\t+ id: " << b.id << endl;
+		os << "\t+ Id: " << b.id << endl;
 		os << "\t+ Link: " << b.lnk << endl;
 		os << "\t+ User name: " << b.usr << endl;
 		os << "\t+ Password: " << b.pwd << endl;
@@ -19,13 +20,13 @@ struct Account {
 		in >> b.id;
 		cout << "\t+ Link: ";
 		in.ignore();
-		getline(in, b.lnk);
+		in.getline(in, b.lnk, 50);
 		cout << "\t+ User name: ";
-		getline(in, b.usr);
+		in.getline(in, b.usr, 50);
 		cout << "\t+ Password: ";
-		getline(in, b.pwd);
+		in.getline(in, b.pwd, 50);
 		cout << "\t+ Description: ";
-		getline(in, b.desc);
+		in.getline(in, b.desc, 50);
 		return in;
 	}
 };
