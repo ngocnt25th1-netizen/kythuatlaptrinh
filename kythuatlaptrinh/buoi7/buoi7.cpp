@@ -3,7 +3,7 @@
 #include <iostream>
 #include "account.h"
 #include "LinkedList.h"
-
+#include <string>
 
 int main()
 {
@@ -59,7 +59,11 @@ int main()
 			break;
 		}
 		case 5: {
-			
+			string userName;
+			cout << "Enter account name: ";
+			cin.ignore();
+			getline(cin, userName);
+			accounts.Find(userName);
 			break;
 		}
 		case 6: {
