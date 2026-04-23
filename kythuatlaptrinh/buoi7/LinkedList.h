@@ -34,13 +34,13 @@ void LinkedList<T>::Export(string fileName) {
 template <typename T>
 void LinkedList<T>::Import(string fileName) {
 	ofstream inFile(fileName, ios::binary);
-	if (!outFile) {
+	if (!inFile) {
 		cout << "Error opening file for writing" << endl;
 		return;
 	}
 	Node<T>* item = head;
 	while (item != NULL) {
-		outFile.write(reinterpre_cast<char*>(&item->data), sizeof(T));
+		outFile.write(reinterpre_cast<char*>(&item->data), sizeof(T)));
 		item = item->next;
 		delete temp;
 	}
@@ -48,7 +48,7 @@ void LinkedList<T>::Import(string fileName) {
 	while (inFile.read(reinterpret_cast<char*>(&item), sizeof(T))) {
 		Add(item);
 	}
-	outFile.close();
+	inFile.close();
 }
 
 
