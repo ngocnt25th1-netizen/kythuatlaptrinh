@@ -5,6 +5,9 @@
 #include "LinkedList.h"
 #include <string>
 
+using namespace std;
+
+
 int main()
 {
 	LinkedList<Account> account = { NULL };
@@ -52,7 +55,7 @@ int main()
 			cin >> updateId;
 			bool res = account.Update(updateId);
 			if (res)
-				cout << "Update account with id: " << updateId << endl;
+				cout << "Update account successfully " << updateId << endl;
 			else
 				cout << "Not found accound id: " << updateId << endl;
 			
@@ -63,7 +66,7 @@ int main()
 			cout << "Enter account name: ";
 			cin.ignore();
 			getline(cin, userName);
-			accounts.Find(userName);
+			account.Find(userName);
 			break;
 		}
 		case 6: {
