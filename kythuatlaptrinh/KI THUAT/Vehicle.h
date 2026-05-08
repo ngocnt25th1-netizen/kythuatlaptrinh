@@ -7,7 +7,7 @@ using namespace std;
 
 struct Vehicle {
 	int id;
-	char type[30], brand[30], price[30];
+	char type[30], brand[30], price[30], usr[30];
 	
 
 	friend ostream& operator<<(ostream& os, const Vehicle& b) {
@@ -16,6 +16,7 @@ struct Vehicle {
 		os << "\t+ Type: " << b.type << endl;
 		os << "\t+ Brand: " << b.brand << endl;
 		os << "\t+ Price: " << b.price << endl;
+		os << "\t+ User name: " << b.usr << endl;
 		return os;
 	}
 
@@ -30,6 +31,8 @@ struct Vehicle {
 		in.getline(b.brand, 30);
 		cout << "\t+ price: ";
 		in.getline(b.price, 30);
+		cout << "\t+ User name: ";
+		in.getline(b.usr, 30);
 		return in;
 	}
 };
